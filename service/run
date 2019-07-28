@@ -1,2 +1,2 @@
 #!/bin/sh
-openvpn /etc/openvpn/'CA\ Toronto.ovpn'
+exec openvpn /usr/share/pia-config/selected.ovpn
