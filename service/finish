@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/share/vpnfailsafe/extras/vpnfailsafe_reset.sh

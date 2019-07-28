@@ -1,0 +1,2 @@
+#!/bin/sh
+openvpn /etc/openvpn/'CA\ Toronto.ovpn'
