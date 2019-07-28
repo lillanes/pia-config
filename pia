@@ -1,0 +1,20 @@
+#!/bin/sh
+
+action=${1:-"default"}
+
+case $action in
+    default)
+        [ -e /usr/share/pia/selected.ovpn ] || ln -s /usr/share/pia/servers/'CA Toronto.ovpn' /usr/share/pia/selected.ovpn
+        ;;
+    off)
+        sv down pia
+        exit
+        ;;
+    *)
+        [ -e /usr/share/pia/servers/'$action'.ovpn ] || (echo "$action not found" && exit 1)
+        ln -s /usr/share/pia/servers/'$action'.ovpn /usr/share/pia/selected.ovpn
+        ;;
+esac
+
+sv down pia
+sv up pia

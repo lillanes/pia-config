@@ -1,2 +1,2 @@
 #!/bin/sh
-exec openvpn /usr/share/pia-config/selected.ovpn
+exec openvpn /usr/share/pia/selected.ovpn
