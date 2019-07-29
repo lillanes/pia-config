@@ -2,6 +2,11 @@
 
 action=${1:-"default"}
 
+if [ ! -e /var/service/pia ]; then
+   echo "PIA service unavailable?"
+   exit 1
+fi
+
 case $action in
     default)
         [ -e /usr/share/pia/selected.ovpn ] || ln -s /usr/share/pia/servers/'CA Toronto.ovpn' /usr/share/pia/selected.ovpn
@@ -11,7 +16,10 @@ case $action in
         exit
         ;;
     *)
-        [ -e /usr/share/pia/servers/'$action'.ovpn ] || (echo "$action not found" && exit 1)
+        if [ ! -e /usr/share/pia/servers/'$action'.ovpn ]; then
+            echo "'$action' not found";
+            exit 1
+        fi
         ln -s /usr/share/pia/servers/'$action'.ovpn /usr/share/pia/selected.ovpn
         ;;
 esac
