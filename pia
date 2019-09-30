@@ -8,6 +8,15 @@ if [ ! -e /var/service/pia ]; then
 fi
 
 case $action in
+    auto)
+        if [ -e /var/service/pia/down ]; then
+            echo "Autostart PIA on boot."
+            rm /var/service/pia/down
+        else
+            echo "Do not autostart PIA on boot."
+            touch /var/service/pia/down
+        fi
+        ;;
     default)
         [ -e /usr/share/pia/selected.ovpn ] || ln -s "/usr/share/pia/servers/CA Toronto.ovpn" /usr/share/pia/selected.ovpn
         ;;
