@@ -9,18 +9,19 @@ fi
 
 case $action in
     default)
-        [ -e /usr/share/pia/selected.ovpn ] || ln -s /usr/share/pia/servers/'CA Toronto.ovpn' /usr/share/pia/selected.ovpn
+        [ -e /usr/share/pia/selected.ovpn ] || ln -s "/usr/share/pia/servers/CA Toronto.ovpn" /usr/share/pia/selected.ovpn
         ;;
     off)
         sv down pia
         exit
         ;;
     *)
-        if [ ! -e /usr/share/pia/servers/'$action'.ovpn ]; then
-            echo "'$action' not found";
+        if [ ! -e "/usr/share/pia/servers/$action.ovpn" ]; then
+            echo "/usr/share/pia/servers/$action.ovpn not found";
             exit 1
         fi
-        ln -s /usr/share/pia/servers/'$action'.ovpn /usr/share/pia/selected.ovpn
+        rm -f /usr/share/pia/selected.ovpn
+        ln -s "/usr/share/pia/servers/$action.ovpn" /usr/share/pia/selected.ovpn
         ;;
 esac
 
